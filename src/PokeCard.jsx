@@ -6,17 +6,19 @@ export const PokeCard = (size) => {
   const api_url = "https://pokeapi.co/api/v2/pokemon";
   const [pokeList, setPokeList] = useState([]);
 
-  useEffect(async () => {
-    setPokeList(await Fetching(api_url));
+  useEffect(() => {
+    Fetching(api_url, setPokeList);
   }, []);
 
   console.log(pokeList);
 
   return (
-    <ol>
+    <>
+      <p>Holaaaaa</p>
+      <p>Holaaaaa</p>
       {pokeList.map((pokemon) => (
         <PokeDisplay pk_name={pokemon.name} pk_url={pokemon.url} />
       ))}
-    </ol>
+    </>
   );
 };
