@@ -1,5 +1,6 @@
 import { Fetching } from "./helpers/fetching";
 import { useEffect, useState } from "react";
+import { PokeDisplay } from "./PokeDisplay";
 
 export const PokeCard = (size) => {
   const api_url = "https://pokeapi.co/api/v2/pokemon";
@@ -14,7 +15,7 @@ export const PokeCard = (size) => {
   return (
     <ol>
       {pokeList.map((pokemon) => (
-        <li>{pokemon.name}</li>
+        <PokeDisplay pk_name={pokemon.name} pk_url={pokemon.url} />
       ))}
     </ol>
   );
