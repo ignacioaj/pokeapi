@@ -7,6 +7,7 @@ function App() {
 
   return (
     <>
+      <h3>Hola, estamos en GitHub y Vercel :D</h3>
       <PokeCard size={size} />
     </>
   );

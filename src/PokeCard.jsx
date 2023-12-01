@@ -14,8 +14,6 @@ export const PokeCard = (size) => {
 
   return (
     <>
-      <p>Holaaaaa</p>
-      <p>Holaaaaa</p>
       {pokeList.map((pokemon) => (
         <PokeDisplay pk_name={pokemon.name} pk_url={pokemon.url} />
       ))}
