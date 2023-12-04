@@ -4,6 +4,8 @@ export function Fetching(fetch_url, setState) {
       return response.ok ? response.json() : { results: [] };
     })
     .then((data) => {
-      setState(data.results);
+      fetch_url == "https://pokeapi.co/api/v2/pokemon"
+        ? setState(data.results)
+        : setState(data);
     });
 }
