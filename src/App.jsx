@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { PokeCard } from "./PokeCard";
 import { PokeDisplay } from "./PokeDisplay";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Inicio } from "./Inicio";
 import { PokeSearch } from "./PokeSearch";
 

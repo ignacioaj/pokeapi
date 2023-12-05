@@ -22,7 +22,12 @@ export const PokeDisplay = () => {
         </h4>
         <h6>Peso: {poke.weight} Kg</h6>
         <h6>Altura: {poke.height} cm</h6>
-        <h6>Tipo Primario:</h6>
+        <h6>
+          Tipo(s):{" "}
+          {poke.types?.map((el) => (
+            <div>{el.type.name}</div>
+          ))}
+        </h6>
       </picture>
       <Link to="/pokemon">
         <button>
