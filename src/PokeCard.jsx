@@ -26,6 +26,14 @@ export const PokeCard = (size) => {
           </Link>
         </div>
       ))}
+      <p></p>
+      <div>
+        <Link to="/">
+          <button>
+            <p>Volver a Inicio</p>
+          </button>
+        </Link>
+      </div>
     </>
   );
 };
