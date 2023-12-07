@@ -25,7 +25,10 @@ export const PokeDisplay = () => {
         <h6>
           Tipo(s):{" "}
           {poke.types?.map((el) => (
-            <div>{el.type.name}</div>
+            <div>
+              {String(el.type.name).charAt(0).toUpperCase() +
+                String(el.type.name).slice(1)}
+            </div>
           ))}
         </h6>
       </picture>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { PokeDisplay } from "./PokeDisplay";
 import { Route, Routes, Link } from "react-router-dom";
 import { GetPokeID } from "./helpers/GetPokeID";
+import { Selector } from "./Selector";
 
 export const PokeCard = (size) => {
   const api_url = "https://pokeapi.co/api/v2/pokemon";
@@ -18,6 +19,8 @@ export const PokeCard = (size) => {
   return (
     <>
       <h1>Selecciona a tu Pokémon favorito</h1>
+
+      <p></p>
       {pokeList.map((pokemon, index) => (
         <div>
           <Link to={String(index + 1)}>

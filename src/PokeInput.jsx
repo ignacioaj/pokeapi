@@ -20,17 +20,13 @@ export function PokeInput() {
     }
   }, [pokeData]);
 
-  const pokemonLocate = () => {
+  function handleClick(e) {
     console.log("¡Plin! Se está ejecutando PokemonLocate()");
     console.log("Quieres buscar a " + pokeName + ". Iniciando fetch...");
-    const myurl = `https://pokeapi.co/api/v2/pokemon/${pokeName}`;
+    const myurl = `https://pokeapi.co/api/v2/pokemon/${pokeName.toLowerCase()}`;
     Fetching(myurl, setPokeData);
 
     console.log("¡Fetch completo! " + pokeName + " es el ID nº" + pokeid);
-  };
-
-  function handleClick(e) {
-    pokemonLocate();
     console.log(pokeData);
 
     console.log(pokeName + " es el ID nº" + pokeid);
