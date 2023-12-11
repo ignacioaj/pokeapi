@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PokeInput } from "./PokeInput";
 import { Selector } from "./Selector";
+import PokeTable from "./PokeTable";
 
 export const Inicio = () => {
   return (
@@ -17,10 +18,6 @@ export const Inicio = () => {
       <p>O quizá prefieras encontrar directamente a un Pokémon por su...</p>
       <div>
         <PokeInput />
-      </div>
-
-      <div>
-        <Selector />
       </div>
 
       <div>

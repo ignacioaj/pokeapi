@@ -14,7 +14,7 @@ export function PokeInput() {
     console.log("¡Plin! Estamos usando useEffect");
 
     if (pokeData?.id) {
-      navigate(`/pokemon/${pokeData.id}`);
+      navigate(`/pokemon/old/${pokeData.id}`);
     } else if (pokeName !== "") {
       alert("No se ha encontrado el Pokémon " + pokeName);
     }
