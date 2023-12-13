@@ -18,6 +18,8 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import { useState, useEffect } from "react";
 import { Fetching } from "./helpers/fetching";
 import { Pokemon } from "./Pokemon";
+import { GetPokeID } from "./helpers/GetPokeID";
+import { Capitalize } from "./helpers/capitalize";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -104,28 +106,41 @@ function createData(id, image, types, height, weight) {
 }
 
 export default function PokeTable(type1 = "", type2 = "") {
-  const api_url = "https://pokeapi.co/api/v2/pokemon";
-  let pk_url = "";
+  const api_url = `https://pokeapi.co/api/v2/pokemon`;
   const [pokeList, setPokeList] = useState([]);
-  const [pokeDetails, setPokeDetails] = useState([]);
+  const [pokeDetails, setPokeDetails] = useState({});
+  const [pokeMapDetails, setPokeMapDetails] = useState([]);
 
-  Fetching(api_url, setPokeList);
+  useEffect(() => {
+    Fetching(api_url, setPokeList);
+  }, []);
+
+  useEffect(() => {
+    pokeList.forEach((pokemon, _) => {
+      Fetching(
+        `https://pokeapi.co/api/v2/pokemon/${GetPokeID(pokemon.url)}/`,
+        (data) => {
+          setPokeMapDetails((pl) => [...pl, data]);
+        }
+      );
+    });
+  }, [pokeList]);
+
+  useEffect(() => {
+    console.log(pokeMapDetails);
+  }, [pokeMapDetails]);
 
   const rows = [];
 
-  pokeList.map((pokemon, index) => {
+  pokeMapDetails.forEach((pokemon, index) => {
     //const mypoke = Pokemon(pokemon.name);
-    Fetching(pokemon.url, setPokeDetails);
-
     rows.push(
       createData(
-        index + 1,
+        pokemon.order,
         <>
           <div>
             <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                index + 1
-              }.png`}
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.order}.png`}
             />
           </div>
           <div>
@@ -133,9 +148,12 @@ export default function PokeTable(type1 = "", type2 = "") {
               String(pokemon.name).slice(1)}
           </div>
         </>,
-        1,
-        pokeDetails.height,
-        1
+        <>
+          <p>{Capitalize(pokemon.types[0].type.name)}</p>
+          <p>{Capitalize(pokemon.types[1]?.type.name)}</p>
+        </>,
+        pokemon.height * 10 ?? "Loading...",
+        pokemon.weight ?? "Loading..."
       )
     );
   });
@@ -154,6 +172,8 @@ export default function PokeTable(type1 = "", type2 = "") {
     newPage: number
   ) => {
     setPage(newPage);
+    //setLimit(limit * newPage)
+    //setOffset(limit - 5)
   };
 
   const handleChangeRowsPerPage = (
@@ -184,16 +204,16 @@ export default function PokeTable(type1 = "", type2 = "") {
               <TableCell component="th" scope="row">
                 {row.id}
               </TableCell>
-              <TableCell style={{ width: 250 }} align="left">
+              <TableCell style={{ width: 500 }} align="left">
                 {row.image}
               </TableCell>
-              <TableCell style={{ width: 250 }} align="left">
+              <TableCell style={{ width: 500 }} align="left">
                 {row.types}
               </TableCell>
-              <TableCell style={{ width: 250 }} align="left">
+              <TableCell style={{ width: 500 }} align="left">
                 {row.height}
               </TableCell>
-              <TableCell style={{ width: 250 }} align="left">
+              <TableCell style={{ width: 500 }} align="left">
                 {row.weight}
               </TableCell>
             </TableRow>

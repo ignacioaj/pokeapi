@@ -6,7 +6,9 @@ import { Fetching } from "./helpers/fetching";
 export const Selector = () => {
   const [types, setTypes] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
-  Fetching("https://pokeapi.co/api/v2/type", setTypes);
+  useEffect(() => {
+    Fetching("https://pokeapi.co/api/v2/type", setTypes);
+  }, []);
 
   useEffect(() => {
     selectedTypes.map((type, index) => {
