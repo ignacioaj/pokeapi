@@ -1,15 +1,17 @@
 import { useParams } from "react-router-dom";
-import { Fetching } from "./helpers/fetching";
+import { Fetching } from "../helpers/fetching";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const PokeDisplay = () => {
+export default function PokeDisplay() {
   let { pkid } = useParams();
   const sprite_url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pkid}.png`;
   const [poke, setPoke] = useState([]);
 
   useEffect(() => {
-    Fetching(`https://pokeapi.co/api/v2/pokemon/${pkid}/`, setPoke);
+    Fetching(`https://pokeapi.co/api/v2/pokemon/${pkid}/`).then((val) =>
+      setPoke(val)
+    );
   }, []);
 
   return (
@@ -37,6 +39,12 @@ export const PokeDisplay = () => {
           <p>Volver a Pokédex</p>
         </button>
       </Link>
+      <p> </p>
+      <Link to="/">
+        <button>
+          <p>Volver a Inicio</p>
+        </button>
+      </Link>
     </>
   );
-};
+}

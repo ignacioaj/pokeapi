@@ -1,10 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { PokeCard } from "./PokeCard";
-import { PokeDisplay } from "./PokeDisplay";
 import { Routes, Route } from "react-router-dom";
-import { Inicio } from "./Inicio";
-import { Pokedex } from "./Pokedex";
+import Inicio from "./screens/Inicio";
+import Pokedex from "./screens/Pokedex";
+import PokeDisplay from "./screens/PokeDisplay";
+import PokeCard from "./screens/PokeCard";
 
 function App() {
   const size = 20;

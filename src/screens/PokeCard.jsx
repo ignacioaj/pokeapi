@@ -1,11 +1,11 @@
-import { Fetching } from "./helpers/fetching";
+import { Fetching } from "../helpers/fetching";
 import { useEffect, useState } from "react";
-import { PokeDisplay } from "./PokeDisplay";
+import PokeDisplay from "./PokeDisplay";
 import { Route, Routes, Link } from "react-router-dom";
-import { GetPokeID } from "./helpers/GetPokeID";
-import { Selector } from "./Selector";
+import { GetPokeID } from "../helpers/GetPokeID";
+import { Selector } from "../components/Selector";
 
-export const PokeCard = (size) => {
+export default function PokeCard() {
   const api_url = "https://pokeapi.co/api/v2/pokemon";
   const [pokeList, setPokeList] = useState([]);
 
@@ -39,4 +39,4 @@ export const PokeCard = (size) => {
       </div>
     </>
   );
-};
+}

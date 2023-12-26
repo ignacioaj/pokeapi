@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { PokeInput } from "./PokeInput";
-import { Selector } from "./Selector";
-import PokeTable from "./PokeTable";
+import { PokeInput } from "../components/PokeInput";
+import { Selector } from "../components/Selector";
+import PokeTable from "../components/PokeTable/PokeTable";
 
-export const Inicio = () => {
+export default function Inicio() {
   return (
     <body>
       <h1>¡Bienvenido a la PokeApi hecha en React!</h1>
@@ -27,4 +27,4 @@ export const Inicio = () => {
       </div>
     </body>
   );
-};
+}

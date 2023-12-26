@@ -1,12 +1,21 @@
-export function Fetching(fetch_url, setState) {
-  fetch(fetch_url)
-    .then((response) => {
-      return response.ok ? response.json() : { results: [] };
-    })
-    .then((data) => {
-      (fetch_url === "https://pokeapi.co/api/v2/pokemon") |
-      (fetch_url === "https://pokeapi.co/api/v2/type")
-        ? setState(data.results)
-        : setState(data);
-    });
+export async function Fetching(fetch_url) {
+  try {
+    const res = await fetch(fetch_url);
+    if (!res.ok) {
+      throw new Error("");
+    }
+    const data = await res.json();
+
+    if (
+      fetch_url === "https://pokeapi.co/api/v2/pokemon" ||
+      fetch_url === "https://pokeapi.co/api/v2/type"
+    ) {
+      return data.results;
+    } else {
+      console.log(data);
+      return data;
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }

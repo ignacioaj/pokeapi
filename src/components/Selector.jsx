@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { Fetching } from "./helpers/fetching";
+import { Fetching } from "../helpers/fetching";
 
-export const Selector = () => {
+export const Selector = ({ sendTypes, setParentState }) => {
   const [types, setTypes] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
-  useEffect(() => {
-    Fetching("https://pokeapi.co/api/v2/type", setTypes);
-  }, []);
+
+  useEffect(
+    () =>
+      Fetching("https://pokeapi.co/api/v2/type").then((data) => setTypes(data)),
+    []
+  );
 
   useEffect(() => {
-    selectedTypes.map((type, index) => {
-      if (selectedTypes.length > 2) {
-        setSelectedTypes([selectedTypes[1], selectedTypes[2]]);
-      }
-      console.log(`Buscando Pokemon con tipo #${index} : ${type.label}`);
-    });
+    if (selectedTypes.length > 2) {
+      setSelectedTypes([selectedTypes[1], selectedTypes[2]]);
+    }
+    setParentState([selectedTypes[0], selectedTypes[1]]);
   }, [selectedTypes]);
 
   function handleChange(e) {
